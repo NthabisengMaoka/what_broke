@@ -1,0 +1,45 @@
+```mermaid
+flowchart TD
+  %% Variables
+  A[Water leakage]
+  B[Public-service strain]
+  C[Political pressure]
+  D[Government response]
+  E[Infrastructure investment]
+  F[Governance capacity]
+
+  %% Main causal chain
+  A -- "(+)" --> B
+  B -- "(+)" --> C
+  C -- "(+)" --> D
+  D -- "(+)\n(delay)" --> E
+  E -- "(-)\n(delay)" --> A
+
+  %% Governance capacity mediation
+  F -- "(-)" --> A
+  A -- "(-)\n(delay: behavioral change)" --> F
+
+  %% Loop Labels
+  %% R1: Vicious governance-leakage loop
+  subgraph R1["R1: Vicious governance-leakage loop (Reinforcing)"]
+    direction TB
+    F -- "(-)" --> A
+    A -- "(-)\n(delay: behavioral change)" --> F
+  end
+
+  %% B1: Policy intervention loop
+  subgraph B1["B1: Policy intervention loop (Balancing)"]
+    direction TB
+    A -- "(+)" --> B
+    B -- "(+)" --> C
+    C -- "(+)" --> D
+    D -- "(+)\n(delay)" --> E
+    E -- "(-)\n(delay)" --> A
+  end
+
+  %% Styling for clarity
+  classDef delay stroke-dasharray: 5 5;
+  D -- "(+)\n(delay)" --> E:::delay
+  E -- "(-)\n(delay)" --> A:::delay
+  A -- "(-)\n(delay: behavioral change)" --> F:::delay
+```
