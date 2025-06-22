@@ -1,5 +1,4 @@
-```mermaid
-flowchart TD
+  flowchart TD
   %% Variables
   A[Water leakage]
   B[Public-service strain]
