@@ -1,31 +1,66 @@
-  flowchart TD
-  %% Variables
-  A[Water leakage]
-  B[Public-service strain]
-  C[Political pressure]
-  D[Government response]
-  E[Infrastructure investment]
-  F[Governance capacity]
+  %% Causal-loop diagram – Governance ↔ Leakage system
+%% “+” = same-direction effect | “–” = opposite-direction effect
+%% R1  = reinforcing (vicious) loop | B1 = balancing (policy) loop
 
-  %% Main causal chain
-  A -- "(+)" --> B
-  B -- "(+)" --> C
-  C -- "(+)" --> D
-  D -- "(+)\n(delay)" --> E
-  E -- "(-)\n(delay)" --> A
+flowchart TD
+    %% --- Nodes ---
+    WL["Water leakage"]
+    PSS["Public-service strain"]
+    PP["Political pressure"]
+    GR["Government response"]
+    II["Infrastructure investment\n(delay)"]
+    GC["Municipal governance\ncapacity"]
 
-  %% Governance capacity mediation
-  F -- "(-)" --> A
-  A -- "(-)\n(delay: behavioral change)" --> F
+    %% --- Balancing loop B1 ---
+    WL  -- "+" --> PSS
+    PSS -- "+" --> PP
+    PP  -- "+" --> GR
+    GR  -- "+" --> II
+    II  -- "–" --> WL
 
-  %% Loop Labels
-  %% R1: Vicious governance-leakage loop
-  subgraph R1["R1: Vicious governance-leakage loop (Reinforcing)"]
-    direction TB
-    F -- "(-)" --> A
-    A -- "(-)\n(delay: behavioral change)" --> F
-  end
+    %% --- Reinforcing loop R1 ---
+    WL  -- "–" --> GC%% Causal-loop diagram – Governance ↔ Leakage system
+%% “+” = same-direction effect | “–” = opposite-direction effect
+%% R1  = reinforcing (vicious) loop | B1 = balancing (policy) loop
 
+flowchart TD
+    %% --- Nodes ---
+    WL["Water leakage"]
+    PSS["Public-service strain"]
+    PP["Political pressure"]
+    GR["Government response"]
+    II["Infrastructure investment\n(delay)"]
+    GC["Municipal governance\ncapacity"]
+
+    %% --- Balancing loop B1 ---
+    WL  -- "+" --> PSS
+    PSS -- "+" --> PP
+    PP  -- "+" --> GR
+    GR  -- "+" --> II
+    II  -- "–" --> WL
+
+    %% --- Reinforcing loop R1 ---
+    WL  -- "–" --> GC
+    GC  -- "–" --> WL
+
+    %% --- Governance boost from response ---
+    GR  -- "+" --> GC
+
+    %% (Optional) styling for clarity
+    classDef pos stroke-width:2px,stroke:#1f77b4;
+    classDef neg stroke-width:2px,stroke:#d62728,stroke-dasharray:5 5;
+    linkStyle 0,1,2,3,7 class:pos
+    linkStyle 4,5,6 class:neg
+    GC  -- "–" --> WL
+
+    %% --- Governance boost from response ---
+    GR  -- "+" --> GC
+
+    %% (Optional) styling for clarity
+    classDef pos stroke-width:2px,stroke:#1f77b4;
+    classDef neg stroke-width:2px,stroke:#d62728,stroke-dasharray:5 5;
+    linkStyle 0,1,2,3,7 class:pos
+    linkStyle 4,5,6 class:neg
   %% B1: Policy intervention loop
   subgraph B1["B1: Policy intervention loop (Balancing)"]
     direction TB
