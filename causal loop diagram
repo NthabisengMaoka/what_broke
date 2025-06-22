@@ -1,25 +1,4 @@
-  %% Causal-loop diagram – Governance ↔ Leakage system
-%% “+” = same-direction effect | “–” = opposite-direction effect
-%% R1  = reinforcing (vicious) loop | B1 = balancing (policy) loop
-
-flowchart TD
-    %% --- Nodes ---
-    WL["Water leakage"]
-    PSS["Public-service strain"]
-    PP["Political pressure"]
-    GR["Government response"]
-    II["Infrastructure investment\n(delay)"]
-    GC["Municipal governance\ncapacity"]
-
-    %% --- Balancing loop B1 ---
-    WL  -- "+" --> PSS
-    PSS -- "+" --> PP
-    PP  -- "+" --> GR
-    GR  -- "+" --> II
-    II  -- "–" --> WL
-
-    %% --- Reinforcing loop R1 ---
-    WL  -- "–" --> GC%% Causal-loop diagram – Governance ↔ Leakage system
+%% Causal-loop diagram – Governance ↔ Leakage system
 %% “+” = same-direction effect | “–” = opposite-direction effect
 %% R1  = reinforcing (vicious) loop | B1 = balancing (policy) loop
 
@@ -51,29 +30,3 @@ flowchart TD
     classDef neg stroke-width:2px,stroke:#d62728,stroke-dasharray:5 5;
     linkStyle 0,1,2,3,7 class:pos
     linkStyle 4,5,6 class:neg
-    GC  -- "–" --> WL
-
-    %% --- Governance boost from response ---
-    GR  -- "+" --> GC
-
-    %% (Optional) styling for clarity
-    classDef pos stroke-width:2px,stroke:#1f77b4;
-    classDef neg stroke-width:2px,stroke:#d62728,stroke-dasharray:5 5;
-    linkStyle 0,1,2,3,7 class:pos
-    linkStyle 4,5,6 class:neg
-  %% B1: Policy intervention loop
-  subgraph B1["B1: Policy intervention loop (Balancing)"]
-    direction TB
-    A -- "(+)" --> B
-    B -- "(+)" --> C
-    C -- "(+)" --> D
-    D -- "(+)\n(delay)" --> E
-    E -- "(-)\n(delay)" --> A
-  end
-
-  %% Styling for clarity
-  classDef delay stroke-dasharray: 5 5;
-  D -- "(+)\n(delay)" --> E:::delay
-  E -- "(-)\n(delay)" --> A:::delay
-  A -- "(-)\n(delay: behavioral change)" --> F:::delay
-```
